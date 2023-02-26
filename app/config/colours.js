@@ -1,0 +1,15 @@
+export default {
+  white: '#FFFF',
+  lightBlue: '#6cb6ff',
+  mediumBlue: '#2d5c8a',
+  lightBlueGrey: '#768390',
+  lightGreen: '#8ddb8c',
+  mediumGreen: '#63a162',
+  lightRed: '#f47067',
+  brightRed: '#c93c37',
+  lightGrey: '#2d333b',
+  mediumGrey: '#22272e',
+  darkGrey: '#1c2128',
+  brown: '#5c2a27',
+  transparent: 'rgba(0,0,0,0.8)',
+};
