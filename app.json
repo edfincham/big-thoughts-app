@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Big Thoughts",
+    "slug": "BigThoughts",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "plugins": [
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "speechRecogntionPermission": "Allow $(PRODUCT_NAME) to securely recognize user speech"
+        }
+      ]
+    ],
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.bigThoughts.bigThoughtsApp",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Big Thoughts needs access to the microphone to record voice notes.",
+        "NSSpeechRecognitionUsageDescription": "Big Thoughts needs access to speech recognition for voice note transcription."
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a545c4fe-dd73-47e8-a0b9-a71af4d2db6e"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "build": {
+    "production": {
+      "node": "18.12.1"
+    },
+    "preview": {
+      "extends": "production",
+      "distribution": "internal"
+    },
+    "development": {
+      "extends": "production",
+      "developmentClient": true,
+      "distribution": "internal"
+    }
+  },
+  "cli": {
+    "promptToConfigurePushNotifications": false
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "$APPLE_ID",
+        "ascAppId": "$APPLE_STORE_CONNECT_APP_ID",
+        "appleTeamId": "$APPLE_TEAM_ID",
+        "sku": "$APPLE_SKU"
+      }
+    }
+  }
+}

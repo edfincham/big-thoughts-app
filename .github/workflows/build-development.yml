@@ -1,0 +1,49 @@
+name: EAS Build (development)
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    name: Install and build development app
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗  Setuprepo
+        uses: actions/checkout@v2
+
+      - name: 🏗  Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+          cache: yarn
+
+      - name: 🏗  Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: 6.x
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+          inlineScript: |
+            APPLE_DEVELOPER_PORTAL_ID=${{ secrets.APPLE_DEVELOPER_PORTAL_ID }}
+            APPLE_TEAM=${{ secrets.APPLE_TEAM }}
+            PROVISION_DEVICE=${{ secrets.PROVISION_DEVICE }}
+            SERIAL_NUMBER=${{ secrets.SERIAL_NUMBER }}
+            echo "::add-mask::$APPLE_DEVELOPER_PORTAL_ID"
+            echo "::add-mask::$APPLE_TEAM"
+            echo "::add-mask::$PROVISION_DEVICE"
+            echo "::add-mask::$SERIAL_NUMBER"
+            echo APPLE_DEVELOPER_PORTAL_ID=$APPLE_DEVELOPER_PORTAL_ID >> $GITHUB_ENV
+            echo APPLE_TEAM=$APPLE_TEAM >> $GITHUB_ENV
+            echo PROVISION_DEVICE=$PROVISION_DEVICE >> $GITHUB_ENV
+            echo SERIAL_NUMBER=$SERIAL_NUMBER >> $GITHUB_ENV
+
+      - name: 📦 Install dependencies
+        run: yarn
+
+      - name: 🛠  Build on EAS
+        run: eas build --platform ios --non-interactive --profile development
+
+      - name: 🚀 Publish preview
+        run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
