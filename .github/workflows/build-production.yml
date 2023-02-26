@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - prod
+
+env:
+  APPLE_ID: ${{ secrets.APPLE_ID }}
+  APPLE_STORE_CONNECT_APP_ID: ${{ secrets.APPLE_STORE_CONNECT_APP_ID }}
+  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM }}
+  APPLE_SKU: ${{ secrets.APPLE_SKU }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,11 +51,6 @@ jobs:
         run: eas build --platform ios --non-interactive --profile production
 
       - name: 🚀 Submit app
-        with:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_STORE_CONNECT_APP_ID: ${{ secrets.APPLE_STORE_CONNECT_APP_ID }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM }}
-          APPLE_SKU: ${{ secrets.APPLE_SKU }}
         run: |
           envsubst < eas.json >> eas.json 
           eas submit --platform ios --latest --profile production
