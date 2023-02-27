@@ -13,6 +13,7 @@ env:
 
 jobs:
   build:
+    name: Install and build production app
     runs-on: ubuntu-latest
     steps:
       - name: 🏗  Setup reo
@@ -52,5 +53,5 @@ jobs:
 
       - name: 🚀 Submit app
         run: |
-          envsubst < eas.json >> eas.json 
+          envsubst < eas.json > eas.tmp && mv eas.tmp eas.json
           eas submit --platform ios --latest --profile production
