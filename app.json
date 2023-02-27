@@ -31,7 +31,8 @@
       "buildNumber": "1.0.0",
       "infoPlist": {
         "NSMicrophoneUsageDescription": "Big Thoughts needs access to the microphone to record voice notes.",
-        "NSSpeechRecognitionUsageDescription": "Big Thoughts needs access to speech recognition for voice note transcription."
+        "NSSpeechRecognitionUsageDescription": "Big Thoughts needs access to speech recognition for voice note transcription.",
+        "NSPhotoLibraryUsageDescription": "Big Thoughts depends on a tool which requires the ability to request access to your photo library. Big Thoughts itself does not require nor use these permissions."
       }
     },
     "extra": {
